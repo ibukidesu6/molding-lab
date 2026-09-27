@@ -1,7 +1,7 @@
 import { memo, useEffect, useState } from 'react';
 import { MATERIALS, MATERIAL_ORDER, MISSIONS, isUnlocked, unlockedMaterials, type Mission, type Outcome, type Progress } from '../game';
 import { fmt, useI18n } from '../i18n';
-import { IconLock, IconStar } from './Icons';
+import { IconCheck, IconClose, IconExpand, IconLock, IconStar } from './Icons';
 import ProductArt from './ProductArt';
 
 interface Props {
@@ -42,10 +42,8 @@ function MissionDrawer({ open, onClose, mission, progress, onSelect, disabled, m
           <span className="kicker">
             {d.ui.mission} {String(index + 1).padStart(2, '0')}
           </span>
-          <button className="icon-btn small" onClick={onClose} aria-label={d.ui.close}>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" aria-hidden>
-              <path d="M6 6l12 12M18 6 6 18" />
-            </svg>
+          <button className="icon-btn" onClick={onClose} aria-label={d.ui.close}>
+            <IconClose />
           </button>
         </header>
 
@@ -60,13 +58,14 @@ function MissionDrawer({ open, onClose, mission, progress, onSelect, disabled, m
                 onClick={() => onSelect(m.id)}
                 aria-current={m.id === mission.id}
               >
-                {unlocked ? String(i + 1).padStart(2, '0') : <IconLock size={13} />}
+                <span className="mtab-num">{String(i + 1).padStart(2, '0')}</span>
+                <span className="mtab-label">{unlocked ? d.missions[m.id as keyof typeof d.missions].title : d.ui.lockedShort}</span>
+                {!unlocked && <IconLock size={20} />}
               </button>
             );
           })}
         </nav>
 
-        <h2 className="mission-title">{text.title}</h2>
         <p className="mission-brief">{text.brief}</p>
 
         <div className="mission-product">
@@ -85,7 +84,7 @@ function MissionDrawer({ open, onClose, mission, progress, onSelect, disabled, m
           <span className="goals-label">{d.ui.goal}</span>
           {(['good', 'cycle', 'stable'] as const).map((k, i) => (
             <div key={k} className={`goal${best > i ? ' done' : ''}`}>
-              <IconStar size={18} filled={best > i} />
+              <IconStar size={20} filled={best > i} />
               <span>{k === 'cycle' ? fmt(d.stars.cycle, { n: mission.targetCycle }) : d.stars[k]}</span>
             </div>
           ))}
@@ -94,7 +93,9 @@ function MissionDrawer({ open, onClose, mission, progress, onSelect, disabled, m
         <label className="switch-row">
           <span>{d.coach.show}</span>
           <input type="checkbox" role="switch" checked={mascot} onChange={onToggleMascot} />
-          <span className="switch" aria-hidden />
+          <span className="switch" aria-hidden>
+            <span className="switch-handle">{mascot && <IconCheck size={16} />}</span>
+          </span>
         </label>
 
         <button className="details-toggle" onClick={() => setDetails((x) => !x)} aria-expanded={details}>
@@ -102,9 +103,7 @@ function MissionDrawer({ open, onClose, mission, progress, onSelect, disabled, m
           <span className="count">
             {d.ui.notebook} {progress.seen.length}/{NOTEBOOK.length}
           </span>
-          <svg className={`chev${details ? ' up' : ''}`} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" aria-hidden>
-            <path d="m6 9 6 6 6-6" />
-          </svg>
+          <IconExpand className={`chev${details ? ' up' : ''}`} />
         </button>
 
         {details && (
@@ -140,7 +139,7 @@ function MissionDrawer({ open, onClose, mission, progress, onSelect, disabled, m
                         <strong>{unlocked ? `${t.name} · ${t.tag}` : d.ui.locked}</strong>
                         {unlocked && <p>{t.desc}</p>}
                       </div>
-                      {!unlocked && <IconLock size={14} />}
+                      {!unlocked && <IconLock size={20} />}
                     </div>
                   );
                 })}

@@ -58,7 +58,7 @@ function ParamPanel({ mission, material, values, onChange, hints, highlight, see
             <div key={id} className={`slider${hint ? ' hinted' : ''}${highlight === id ? ' flash-hl' : ''}${fresh.includes(id) ? ' fresh' : ''}`} id={`param-${id}`}>
               <div className="slider-top">
                 <span className="slider-icon">
-                  <Icon size={18} />
+                  <Icon size={24} />
                 </span>
                 <label className="slider-name" htmlFor={`in-${id}`}>
                   {text.name}
@@ -66,7 +66,7 @@ function ParamPanel({ mission, material, values, onChange, hints, highlight, see
                 </label>
                 {hint && (
                   <span className={`hint-badge ${hint.dir}`} title={d.ui.hintLabel}>
-                    {hint.dir === 'up' ? <IconUp size={14} /> : <IconDown size={14} />}
+                    {hint.dir === 'up' ? <IconUp size={18} /> : <IconDown size={18} />}
                   </span>
                 )}
                 <output className="slider-value" htmlFor={`in-${id}`}>
@@ -110,7 +110,7 @@ function ParamPanel({ mission, material, values, onChange, hints, highlight, see
       <div className="start-wrap">
         <span className="step-dot">2</span>
         <button className="btn-start" onClick={onStart}>
-          <IconPlay size={20} />
+          <IconPlay size={24} />
           <span>{d.ui.start}</span>
         </button>
       </div>

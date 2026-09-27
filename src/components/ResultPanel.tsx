@@ -60,7 +60,7 @@ export function ResultSide({ result, material, mission, canNext, onWhy, onRetry,
         ))}
       </ul>
       <p className="cycle">
-        <IconClock size={15} />
+        <IconClock size={18} />
         <span>{d.ui.cycle}</span>
         <strong>
           {result.cycleTime.toFixed(1)}
@@ -72,18 +72,18 @@ export function ResultSide({ result, material, mission, canNext, onWhy, onRetry,
         {good && canNext && (
           <button className="btn-main" onClick={onNext}>
             <span>{d.ui.next}</span>
-            <IconArrow size={18} />
+            <IconArrow size={20} />
           </button>
         )}
         {!good && (
           <button className="btn-main" onClick={onWhy}>
-            <IconEye size={18} />
+            <IconEye size={20} />
             <span>{d.ui.why}</span>
           </button>
         )}
         {good && !canNext && !allStars && (
           <button className="btn-main" onClick={onRetry}>
-            <IconStar size={18} />
+            <IconStar size={20} />
             <span>{d.ui.moreStars}</span>
           </button>
         )}
@@ -95,7 +95,7 @@ export function ResultSide({ result, material, mission, canNext, onWhy, onRetry,
           )}
           {(!good || canNext || allStars) && (
             <button className="btn-text" onClick={onRetry}>
-              <IconRetry size={15} /> {d.ui.retryShort}
+              <IconRetry size={18} /> {d.ui.retryShort}
             </button>
           )}
         </div>
@@ -135,9 +135,9 @@ export function CauseSide({ result, material, onRetry, onReplay, onHint }: Cause
             const Icon = PARAM_ICONS[h.param];
             return (
               <button key={h.param} className={`hint-chip ${h.dir}`} onClick={() => onHint(h.param)}>
-                <Icon size={16} />
+                <Icon size={18} />
                 <span>{d.params[h.param].name}</span>
-                {h.dir === 'up' ? <IconUp size={15} /> : <IconDown size={15} />}
+                {h.dir === 'up' ? <IconUp size={18} /> : <IconDown size={18} />}
               </button>
             );
           })}
@@ -146,12 +146,12 @@ export function CauseSide({ result, material, onRetry, onReplay, onHint }: Cause
 
       <div className="side-actions">
         <button className="btn-main" onClick={onRetry}>
-          <IconRetry size={18} />
+          <IconRetry size={20} />
           <span>{d.ui.retryShort}</span>
         </button>
         <div className="side-sub">
           <button className="btn-text" onClick={onReplay}>
-            <IconEye size={15} /> {d.ui.replay}
+            <IconEye size={18} /> {d.ui.replay}
           </button>
         </div>
       </div>

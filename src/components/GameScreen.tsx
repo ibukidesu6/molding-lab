@@ -21,7 +21,7 @@ import {
   type SimResult,
 } from '../game';
 import { useI18n } from '../i18n';
-import { IconArrow, IconEye, IconHome, IconSkip } from './Icons';
+import { IconArrow, IconCheck, IconEye, IconHome, IconMenu, IconSkip } from './Icons';
 import LangSwitch from './LangSwitch';
 import Mascot, { type Talk } from './Mascot';
 import MissionDrawer from './MissionPanel';
@@ -189,6 +189,9 @@ export default function GameScreen({ progress, setProgress, onHome }: Props) {
   return (
     <div className={`game mode-${mode}`}>
       <header className="topbar">
+        <button className="icon-btn nav-btn" onClick={() => setDrawer(true)} disabled={running} aria-expanded={drawer} aria-label={d.ui.missionTab} title={d.ui.missionTab}>
+          <IconMenu />
+        </button>
         <button className="brand" onClick={onHome} aria-label={d.ui.home}>
           <Logo />
           <span className="brand-name">{d.app.name}</span>
@@ -196,19 +199,12 @@ export default function GameScreen({ progress, setProgress, onHome }: Props) {
         <div className="topbar-right">
           <LangSwitch />
           <button className="icon-btn" onClick={onHome} aria-label={d.ui.home} title={d.ui.home}>
-            <IconHome size={18} />
+            <IconHome />
           </button>
         </div>
       </header>
 
       <main className="play">
-        <button className="mission-tab" onClick={() => setDrawer(true)} disabled={running} aria-expanded={drawer}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" aria-hidden>
-            <path d="M4 7h16M4 12h16M4 17h16" />
-          </svg>
-          <span>{d.ui.missionTab}</span>
-        </button>
-
         <div className="stage-col">
           <section className={`stage${progress.mascot ? ' has-mascot' : ''}`}>
             <div className="stage-hud">
@@ -240,7 +236,7 @@ export default function GameScreen({ progress, setProgress, onHome }: Props) {
                 disabled={mode === 'cause'}
                 aria-pressed={xray || mode === 'cause'}
               >
-                <IconEye size={17} />
+                {xray || mode === 'cause' ? <IconCheck size={18} /> : <IconEye size={18} />}
                 <span>{d.ui.xray}</span>
               </button>
             </div>
@@ -269,7 +265,7 @@ export default function GameScreen({ progress, setProgress, onHome }: Props) {
                     <span>{d.ui.todo1}</span>
                   </li>
                   <li className="todo-arrow" aria-hidden>
-                    <IconArrow size={16} />
+                    <IconArrow size={18} />
                   </li>
                   <li className={touched ? 'now' : ''}>
                     <span className="step-dot">2</span>
@@ -290,7 +286,7 @@ export default function GameScreen({ progress, setProgress, onHome }: Props) {
                   </ol>
                   {run.running && (
                     <button className="skip-btn" onClick={run.skip}>
-                      <IconSkip size={14} />
+                      <IconSkip size={18} />
                       <span>{d.ui.skip}</span>
                     </button>
                   )}

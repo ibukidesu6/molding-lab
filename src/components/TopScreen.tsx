@@ -124,7 +124,7 @@ export default function TopScreen({ onStart, hasProgress }: { onStart: () => voi
           <div className="hero-cta">
             <button className="btn-start big" onClick={onStart}>
               {hasProgress ? d.top.continue : d.top.start}
-              <IconArrow size={22} />
+              <IconArrow size={20} />
             </button>
             <span className="note">{d.top.note}</span>
           </div>
