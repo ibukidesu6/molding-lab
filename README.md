@@ -1,6 +1,6 @@
 # MOLD LAB — 射出成形ラボ
 
-Play: https://ibukidesu6.github.io/molding-lab/
+Play: https://mold-lab.netlify.app (password protected — ID `moldlab`, ask the owner for the password)
 
 A Web game where you learn how injection molding works just by playing (React + TypeScript + Vite).
 
@@ -8,7 +8,7 @@ A Web game where you learn how injection molding works just by playing (React + 
 npm install
 npm run dev      # http://localhost:5173
 npm run build    # outputs to dist/ (static hosting)
-npm run deploy   # builds and publishes to GitHub Pages (gh-pages branch)
+npm run deploy   # builds and publishes to Netlify (mold-lab.netlify.app, Basic auth)
 ```
 
 ## Structure
