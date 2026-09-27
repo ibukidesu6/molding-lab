@@ -25,3 +25,7 @@ dist-ssr
 
 # Teacher-cat intermediates (rebuild with mascot-kit/process.sh)
 mascot-kit/out/
+
+# Netlify link (local)
+.netlify
+deno.lock
